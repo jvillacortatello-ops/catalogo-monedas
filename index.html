@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Monedas Conmemorativas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+      --color-bg: #f5f1eb;
+      --color-surface: #fbf8f3;
+      --color-surface-2: #ffffff;
+      --color-surface-offset: #ebe5dc;
+      --color-border: #d7cfc2;
+      --color-divider: #dfd7cb;
+      --color-text: #201c17;
+      --color-text-muted: #6d655d;
+      --color-text-faint: #9c948a;
+      --color-text-inverse: #f8f4ef;
+      --color-primary: #6f4b2e;
+      --color-primary-hover: #543721;
+      --color-primary-highlight: #e5d7c7;
+      --color-accent: #9c7a3b;
+      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.875rem; --radius-xl: 1.25rem; --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(32,28,23,.08);
+      --shadow-md: 0 8px 24px rgba(32,28,23,.10);
+      --shadow-lg: 0 18px 44px rgba(32,28,23,.14);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #151311;
+      --color-surface: #1d1a17;
+      --color-surface-2: #24211d;
+      --color-surface-offset: #2c2823;
+      --color-border: #403a33;
+      --color-divider: #38322d;
+      --color-text: #ede6dd;
+      --color-text-muted: #b6aea4;
+      --color-text-faint: #857d74;
+      --color-text-inverse: #191613;
+      --color-primary: #c29a68;
+      --color-primary-hover: #d8b382;
+      --color-primary-highlight: #403224;
+      --color-accent: #e1b75a;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.35);
+      --shadow-lg: 0 18px 44px rgba(0,0,0,.45);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:none;text-size-adjust:none;scroll-behavior:smooth}
+    body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;background:var(--color-bg);color:var(--color-text)}
+    img,svg{display:block;max-width:100%;height:auto}
+    a,button{transition:all .18s ease}
+    button{font:inherit;border:none;background:none;cursor:pointer}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .skip-link{position:absolute;left:-9999px;top:auto}
+    .skip-link:focus{left:var(--space-4);top:var(--space-4);background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-3) var(--space-4);z-index:99;border-radius:var(--radius-md)}
+    .container{width:min(1120px,calc(100% - 2rem));margin-inline:auto}
+    .section{padding-block:clamp(var(--space-12),8vw,var(--space-20))}
+    .eyebrow{display:inline-flex;gap:var(--space-2);align-items:center;padding:.45rem .8rem;border-radius:var(--radius-full);background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+    .eyebrow::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:currentColor}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.05;font-weight:600}
+    h1{font-size:var(--text-2xl);max-width:10ch}
+    h2{font-size:var(--text-xl);margin-bottom:var(--space-4)}
+    h3{font-size:var(--text-lg)}
+    p{max-width:68ch;color:var(--color-text-muted)}
+    .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--color-bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider)}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) 0}
+    .brand{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:inherit}
+    .brand svg{width:42px;height:42px;color:var(--color-primary)}
+    .brand span{display:block}
+    .brand-title{font-size:var(--text-sm);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .brand-sub{font-size:var(--text-xs);color:var(--color-text-muted)}
+    .nav{display:flex;align-items:center;gap:var(--space-4)}
+    .nav a{text-decoration:none;color:var(--color-text-muted);font-size:var(--text-sm);font-weight:600}
+    .nav a:hover{color:var(--color-primary)}
+    .theme-toggle{width:44px;height:44px;border-radius:var(--radius-full);display:grid;place-items:center;border:1px solid var(--color-border);background:var(--color-surface)}
+    .hero-grid{display:grid;gap:var(--space-8);align-items:center}
+    .hero-copy{display:grid;gap:var(--space-5)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);padding-top:var(--space-2)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.9rem 1.2rem;border-radius:var(--radius-full);text-decoration:none;font-size:var(--text-sm);font-weight:700}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{border:1px solid var(--color-border);color:var(--color-text);background:var(--color-surface)}
+    .hero-card{background:linear-gradient(180deg,var(--color-surface),var(--color-surface-2));border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);box-shadow:var(--shadow-lg)}
+    .hero-card img{border-radius:calc(var(--radius-xl) - var(--space-4));width:100%;aspect-ratio:4/5;object-fit:cover}
+    .caption{display:flex;justify-content:space-between;gap:var(--space-3);padding-top:var(--space-4);font-size:var(--text-xs);color:var(--color-text-muted)}
+    .grid-3,.grid-2{display:grid;gap:var(--space-4)}
+    .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+    .card p{margin-top:var(--space-3)}
+    .metric{display:grid;gap:var(--space-2)}
+    .metric strong{font-size:var(--text-xl);font-family:var(--font-display);color:var(--color-primary)}
+    .process{counter-reset:step}
+    .process .card{position:relative;padding-top:var(--space-10)}
+    .process .card::before{counter-increment:step;content:counter(step, decimal-leading-zero);position:absolute;top:var(--space-4);left:var(--space-4);font-size:var(--text-xs);letter-spacing:.12em;color:var(--color-text-faint);font-weight:800}
+    .pricing{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+    th,td{text-align:left;padding:1rem;border-bottom:1px solid var(--color-divider);vertical-align:top}
+    th{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);background:var(--color-surface-offset)}
+    tr:last-child td{border-bottom:none}
+    .gallery{display:grid;gap:var(--space-4)}
+    .gallery-main{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4);box-shadow:var(--shadow-md)}
+    .gallery-main img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:calc(var(--radius-xl) - var(--space-4))}
+    .note{margin-top:var(--space-4);padding:var(--space-4);border-left:3px solid var(--color-primary);background:var(--color-surface-offset);border-radius:var(--radius-md);color:var(--color-text-muted)}
+    .cta{background:linear-gradient(135deg,var(--color-primary),color-mix(in srgb,var(--color-primary) 70%, black));color:var(--color-text-inverse);border-radius:var(--radius-xl);padding:clamp(var(--space-8),6vw,var(--space-12));box-shadow:var(--shadow-lg)}
+    .cta p{color:color-mix(in srgb,var(--color-text-inverse) 82%, transparent)}
+    .footer{padding:var(--space-8) 0 var(--space-12);color:var(--color-text-muted);font-size:var(--text-sm)}
+    .list{display:grid;gap:var(--space-3);margin-top:var(--space-4)}
+    .list li{list-style:none;display:flex;gap:var(--space-3);color:var(--color-text-muted)}
+    .list li::before{content:"•";color:var(--color-primary);font-weight:900}
+    @media (min-width: 820px){
+      .hero-grid{grid-template-columns:1.05fr .95fr}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+      .grid-2{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:1.15fr .85fr}
+    }
+    @media (max-width: 819px){
+      .nav a:not(.btn){display:none}
+      h1{max-width:12ch}
+    }
+    @media print{
+      .topbar,.theme-toggle,.hero-actions{display:none!important}
+      body{background:#fff;color:#000}
+      .card,.hero-card,table,.gallery-main,.cta{box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio del catálogo">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <circle cx="32" cy="32" r="24"></circle>
+          <circle cx="32" cy="32" r="15"></circle>
+          <path d="M32 12v10M32 42v10M12 32h10M42 32h10"></path>
+          <path d="M22 22l20 20M42 22L22 42"></path>
+        </svg>
+        <span>
+          <span class="brand-title">Monedas Conmemorativas</span>
+          <span class="brand-sub">Catálogo profesional</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#modelos">Modelos</a>
+        <a href="#tipos">Tipos</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#precios">Precios</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema"></button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="section" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Diseño personalizado</span>
+          <h1>Monedas conmemorativas para unidades, promociones y eventos militares.</h1>
+          <p>Desarrollo monedas conmemorativas en versiones impresas, 3D, alto relieve y diferentes grosores, con producción especializada y entrega hacia el Perú en plazos estimados de 3 a 4 semanas.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#precios">Ver precios referenciales</a>
+            <a class="btn btn-secondary" href="#proceso">Conocer el proceso</a>
+          </div>
+          <div class="grid-3" aria-label="Indicadores principales">
+            <article class="metric card">
+              <span>Precio referencial</span>
+              <strong>S/ 23–27</strong>
+              <p>El costo unitario depende del tipo de acabado, colores, detalles y volumen del pedido.</p>
+            </article>
+            <article class="metric card">
+              <span>Entrega estimada</span>
+              <strong>3–4 semanas</strong>
+              <p>Incluye producción mediante proveedor en China y gestión de envío hacia el Perú.</p>
+            </article>
+            <article class="metric card">
+              <span>Enfoque principal</span>
+              <strong>Sector militar</strong>
+              <p>La mayor parte de los diseños está orientada a fuerzas armadas, unidades y promociones.</p>
+            </article>
+          </div>
+        </div>
+        <figure class="hero-card">
+          <img src="./assets/monedas-muestra.jpg" alt="Muestra de monedas conmemorativas militares personalizadas con diversos acabados y colores" width="768" height="1024" loading="lazy" />
+          <figcaption class="caption">
+            <span>Acabados metálicos, esmaltes y relieves.</span>
+            <span>Aplicación institucional y ceremonial.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="modelos">
+      <div class="container gallery">
+        <div>
+          <span class="eyebrow">Galería base</span>
+          <h2>Presentación visual del producto</h2>
+          <p>Las monedas pueden adaptarse a aniversarios de unidades, cursos, promociones, operaciones especiales, escuelas, comandos y eventos institucionales. El valor diferencial está en la personalización de la identidad de cada organización.</p>
+          <ul class="list" role="list">
+            <li>Diseños orientados principalmente al ámbito militar.</li>
+            <li>Combinación de color, relieve y simbología institucional.</li>
+            <li>Posibilidad de producir series con identidad propia y presentación formal.</li>
+          </ul>
+        </div>
+        <div class="gallery-main">
+          <img src="./assets/antar.jpeg" alt="Colección de monedas conmemorativas militares en diferentes formas y estilos" width="768" height="1024" loading="lazy" />
+          <div class="note">Las imágenes del catálogo pueden ampliarse luego con fichas individuales por modelo, unidad o promoción.</div>
+        </div>
+        <div class="gallery-thumbs">
+  <article class="thumb-card">
+    <img src="./assets/moneda1.jpeg" alt="Moneda conmemorativa de unidad" width="400" height="400" loading="lazy">
+    <h3>Moneda de unidad</h3>
+    <p>Diseño institucional con escudo, lema y acabado metálico de presentación.</p>
+  </article>
+
+  <article class="thumb-card">
+    <img src="./assets/moneda2.jpeg" alt="Moneda conmemorativa de promoción" width="400" height="400" loading="lazy">
+    <h3>Moneda de promoción</h3>
+    <p>Modelo orientado a promociones, cursos y aniversarios institucionales.</p>
+  </article>
+
+  <article class="thumb-card">
+    <img src="./assets/moneda3.jpeg" alt="Moneda conmemorativa en 3D" width="400" height="400" loading="lazy">
+    <h3>Moneda 3D</h3>
+    <p>Presenta mayor profundidad visual para resaltar aeronaves, emblemas o figuras.</p>
+  </article>
+
+  <article class="thumb-card">
+    <img src="./assets/moneda4.jpeg" alt="Moneda conmemorativa en alto relieve" width="400" height="400" loading="lazy">
+    <h3>Moneda alto relieve</h3>
+    <p>Acabado ceremonial con percepción premium y mayor presencia institucional.</p>
+  </article>
+
+  <article class="thumb-card">
+    <img src="./assets/moneda5.jpeg" alt="Moneda conmemorativa en alto relieve" width="400" height="400" loading="lazy">
+    <h3>Moneda alto relieve</h3>
+    <p>Acabado ceremonial con percepción premium y mayor presencia institucional.</p>
+  </article>
+
+  <article class="thumb-card">
+    <img src="./assets/moneda6.jpeg" alt="Moneda conmemorativa en alto relieve" width="400" height="400" loading="lazy">
+    <h3>Moneda alto relieve</h3>
+    <p>Acabado ceremonial con percepción premium y mayor presencia institucional.</p>
+  </article>
+</div>
+      </div>
+    </section>
+
+    <section class="section" id="tipos">
+      <div class="container">
+        <span class="eyebrow">Variedad de fabricación</span>
+        <h2>Tipos de monedas ofrecidas</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Monedas impresas</h3>
+            <p>Ideales cuando se busca un diseño limpio, color definido y producción eficiente para entregas institucionales, promociones o series conmemorativas.</p>
+          </article>
+          <article class="card">
+            <h3>Monedas 3D</h3>
+            <p>Adecuadas para resaltar emblemas, figuras, aeronaves, escudos o personajes con mayor profundidad visual y presencia ceremonial.</p>
+          </article>
+          <article class="card">
+            <h3>Monedas en alto relieve</h3>
+            <p>Recomendadas para piezas de mayor distinción, con percepción táctil superior y acabado más solemne.</p>
+          </article>
+          <article class="card">
+            <h3>Diferentes grosores y acabados</h3>
+            <p>El espesor, la combinación de esmaltes, el borde y el nivel de detalle influyen directamente en la percepción premium y en el precio final.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container process">
+        <span class="eyebrow">Secuencia de trabajo</span>
+        <h2>Proceso de pedido</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Definición del concepto</h3>
+            <p>Se recopilan escudos, lemas, fechas, colores y referencias visuales para estructurar una propuesta de diseño alineada con la identidad institucional.</p>
+          </article>
+          <article class="card">
+            <h3>Ajuste del diseño</h3>
+            <p>Se afinan detalles como tipo de relieve, distribución gráfica, colores y grosor de la moneda antes de pasar a producción.</p>
+          </article>
+          <article class="card">
+            <h3>Fabricación especializada</h3>
+            <p>La producción se coordina mediante empresa en China, según el tipo de moneda y la complejidad del trabajo requerido.</p>
+          </article>
+          <article class="card">
+            <h3>Envío al Perú</h3>
+            <p>El despacho se realiza hacia Perú y el tiempo estimado total de entrega se mantiene entre 3 y 4 semanas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="precios">
+      <div class="container">
+        <span class="eyebrow">Condiciones referenciales</span>
+        <h2>Precios y factores que influyen</h2>
+        <div class="pricing">
+          <table>
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>Referencia</th>
+                <th>Observación comercial</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Precio unitario</td>
+                <td>S/ 23 a S/ 27</td>
+                <td>Rango estimado sujeto al tipo de moneda, complejidad del diseño y volumen solicitado.</td>
+              </tr>
+              <tr>
+                <td>Tiempo de entrega</td>
+                <td>3 a 4 semanas</td>
+                <td>Plazo aproximado considerando producción y envío internacional al Perú.</td>
+              </tr>
+              <tr>
+                <td>Factores de costo</td>
+                <td>Tipo, color, detalle, cantidad</td>
+                <td>Más colores, mayor relieve o mayor complejidad gráfica pueden elevar el costo unitario.</td>
+              </tr>
+              <tr>
+                <td>Economía por volumen</td>
+                <td>Mayor cantidad, menor costo</td>
+                <td>El precio por moneda disminuye conforme aumenta el pedido total.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Este catálogo usa precios referenciales. Para cotización final conviene definir cantidad, medidas, acabado, anverso, reverso y nivel de detalle requerido.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cta">
+        <span class="eyebrow" style="background:rgba(255,255,255,.14); color:var(--color-text-inverse)">Solicitud de diseño</span>
+        <h2>Catálogo listo para presentar a clientes institucionales.</h2>
+        <p>Este formato puede evolucionar a una versión comercial con fichas por modelo, formulario de contacto, enlaces a WhatsApp y galería ampliada por unidades o promociones.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Catálogo digital de presentación profesional para monedas conmemorativas personalizadas.
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btn = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const render = () => {
+        root.setAttribute('data-theme', theme);
+        btn.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        btn.setAttribute('aria-label', 'Cambiar a modo ' + (theme === 'dark' ? 'claro' : 'oscuro'));
+      };
+      btn.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; render(); });
+      render();
+    })();
+  </script>
+</body>
+</html>
